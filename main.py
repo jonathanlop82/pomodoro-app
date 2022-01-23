@@ -1,6 +1,7 @@
 from tkinter import *
 import math
-import time
+from pygame import mixer
+
 
 # ---------------------------- CONSTANTS ------------------------------- #
 PINK = "#e2979c"
@@ -61,13 +62,21 @@ def counter_down(count):
     else:
         if work_times > 0:
             check["text"] = CHECK_MARK * work_times
+        play_sound()
         start_timer()
+
+mixer.init()
+
+def play_sound():
+    mixer.music.load("ding-sound-effect.mp3")
+    mixer.music.play()
 
 # ---------------------------- UI SETUP ------------------------------- #
 
 window = Tk()
 window.title("Pomodoro")
 window.config(padx=100, pady=50, bg=YELLOW)
+
 
 #to load image tomato
 canvas = Canvas(width=200, height=224, bg=YELLOW, highlightthickness=0)
